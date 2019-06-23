@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<meta charset="utf-8">
+<meta name="author" content="Lidiane da S. Costa">
+<link rel="stylesheet" type="text/css" href="bootstrap-4.3.1-dist/css/bootstrap.css">
+<head>
+	<title>Atividade Json</title>
+</head>
+<body style=" background-image: url(img/a.jpg);">
+  <body>
+    <div class="container">
+      <h3 align="center">Lista de alunos</h3>
+
+      <div id="erros"></div>
+      <form id="form-aluno" method="post">
+        <div class="form-group">
+          <label for="nome">Nome</label>
+          <input type="text" id="nome" name="nome" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for="altura">Altura</label>
+          <input type="text" id="altura" name="altura" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for="idade">Idade</label>
+          <input type="text" id="idade" name="idade" class="form-control" />
+        </div>
+        <div>
+          <button class="btn btn-primary btn-lg btn-block" id="busca" type="submit">
+            Cadastrar aluno
+          </button>
+        </div>
+      </form>
+<div class="d-flex justify-content-center">
+<div class="lis" >
+
+      <table class=" table table-striped d-block" style="height:400px;overflow:scroll;">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Altura</th>
+            <th>Idade</th>
+          </tr>
+        </thead>
+				<tbody class="lista-alunos " >
+				<tr >
+					<th class="id"></th>
+					<th class="nome"> </th>
+					<th class="altura">  </th>
+					<th class="idade">  </th>
+				</tr>
+			</tbody>
+      </table>
+		</div>
+		</div>
+    </div>
+  </body>
+  <script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="aplicacao.js"></script>
+
+</html>

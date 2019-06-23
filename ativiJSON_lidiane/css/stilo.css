@@ -1,0 +1,7 @@
+body, html {
+  height: 100%;
+}
+
+.bg { 
+  /* The image used */
+  background-image: url("img/iDesign_IllustratorDom_14.jpg");

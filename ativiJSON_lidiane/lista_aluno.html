@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<meta charset="utf-8">
+<meta name="author" content="Lidiane da S. Costa">
+<link rel="stylesheet" type="text/css" href="bootstrap-4.3.1-dist/css/bootstrap.css">
+<head>
+	<title>Atividade Json</title>
+</head>
+<body style=" background-image: url(img/a.jpg);">
+  <body>
+    <div class="container">
+      <h3 align="center">Lista de alunos</h3>
+
+      <div id="erros"></div>
+      <form id="form-aluno">
+        <div class="form-group">
+          <label for="nome">Nome</label>
+          <input type="text" id="nome" name="nome" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for="altura">Altura</label>
+          <input type="text" id="altura" name="altura" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for="idade">Idade</label>
+          <input type="text" id="idade" name="idade" class="form-control" />
+        </div>
+        <div>
+          <button class="btn btn-primary btn-lg btn-block" id="busca" type="submit">
+            Cadastrar aluno
+          </button>
+        </div>
+      </form>
+
+      <table id="lista-alunos" class="table table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Altura</th>
+            <th>Idade</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </body>
+  <script
+    type="text/javascript"
+    src="jquery.js"
+  ></script>
+
+  <script type="text/javascript">
+    jQuery(document).ready(function() {
+      jQuery("#form-aluno").on("submit", function(e) {
+        e.preventDefault();
+        var nome = jQuery('[name="nome"]').val();
+        var altura = jQuery('[name="altura"]').val();
+        var idade = jQuery('[name="idade"]').val();
+        jQuery("#erros").html("CARREGANDO...");
+        $.ajax({
+          url: "funcoes/funcoes.php",
+          type: "POST",
+          dataType: "json",
+          data: {
+            nome: nome,
+            altura: altura,
+            idade: idade
+          }
+        })
+          .fail(function() {
+            jQuery("#erros").empty();
+            alert("Não foi possivel processar o seu pedido");
+          })
+          .done(function(resposta) {
+            trazer_dados();
+            jQuery("#erros").empty();
+            if (!resposta.contem_erros) {
+              alert(resposta.mensagem);
+            } else {
+              var erro_nome = resposta.mensagens.nome;
+              var erro_idade = resposta.mensagens.idade;
+              jQuery("#erros").append(erro_nome);
+              jQuery("#erros").append(erro_idade);
+            }
+          });
+      });
+    });
+
+    function trazer_dados() {
+      $.ajax({
+        url: "funcoes/funcoes.php",
+        type: "GET",
+        success: function(response) {
+          $("tbody").html("<tr><td> funcionou </td></tr>");
+        }
+      });
+    }
+  </script>
+</html>
